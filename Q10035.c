@@ -21,23 +21,26 @@ int main(void)
 
 void carry(int a,int b)
 {
-	int x[10]={0},y[10]={0};
-	int i=0,count=0;
+	int x[10]={0},y[10]={0},z[10]={0};
+	int ans=a+b,i=0,count=0;
 	for(i=0;i<10;i++)
 	{
-		x[i]=a/mathpow(9-i);
-		a=a%mathpow(9-i);	
-	}
-	
-	for(i=0;i<10;i++)
-	{
-		y[i]=b/mathpow(9-i);
-		b=b%mathpow(9-i);	
+		x[i] = a / mathpow(9-i);
+		a = a % mathpow(9-i);
+
+		y[i] = b / mathpow(9-i);
+		b = b % mathpow(9-i);
+
+		z[i] = ans / mathpow(9-i);
+		ans = ans % mathpow(9-i);
 	}
 	
 	for(i=9;i>0;i--)
 	{	
-		if(x[i]+y[i]>=10)
+		int max=x[i];
+		if(y[i]>max)
+			max=y[i];
+		if(max>z[i])	
 			count++;
 	}
 	
