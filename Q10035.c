@@ -30,22 +30,21 @@ void carry(int a,int b)
 
 		y[i] = b / mathpow(9-i);
 		b = b % mathpow(9-i);
-
-		z[i] = ans / mathpow(9-i);
-		ans = ans % mathpow(9-i);
 	}
 	
 	for(i=9;i>0;i--)
 	{	
-		int max=x[i];
-		if(y[i]>max)
-			max=y[i];
-		if(max>z[i])	
+		if(x[i]+y[i]+z[i]>=10)
+		{
+			z[i-1]+=1;
 			count++;
+		}
 	}
 	
-	if(count>=1)
-		printf("%d carry operation.\n",count);
+	if(count==1)
+		printf("1 carry operation.\n");
+	else if (count>1)	
+		printf("%d carry operations.\n",count);
 	else
 		printf("No carry operation.\n");		
 }
